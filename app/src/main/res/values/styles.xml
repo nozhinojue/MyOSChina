@@ -1,0 +1,103 @@
+<resources>
+    <!-- app主题 -->
+    <style name="MyAppTheme" parent="Base.Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>    <!--状态栏颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>            <!-- Actionbar颜色-->
+
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--<item name="android:textColorPrimary">@color/white</item>-->
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!--drawer中菜单layout样式-->
+    <style name="MenuItemLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:background">@drawable/list_item_bg</item>
+        <item name="android:clickable">true</item>
+    </style>
+    <!--drawer中菜单imageview样式-->
+    <style name="MenuItemImageViewStyle">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+    </style>
+    <!--drawer中菜单textview样式-->
+    <style name="MenuItemTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <!--横向线style-->
+    <style name="h_lineStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/day_line_color</item>
+    </style>
+
+    <!--垂直线style-->
+    <style name="v_lineStyle">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/day_line_color</item>
+    </style>
+
+    <!--底部导航栏radiobuttonstyle-->
+    <style name="NavRadioBtnStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@drawable/tab_text_selector</item>
+        <item name="android:background">@drawable/list_item_bg</item>
+    </style>
+
+    <!--Dialog样式-->
+    <style name="Dialog_comm" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+    </style>
+    <!--quick_option_dialog样式-->
+    <style name="quick_option_dialog" parent="Dialog_comm">
+        <item name="android:windowBackground">@color/white40</item>
+        <item name="android:windowAnimationStyle">@style/dialog_animation</item>
+    </style>
+    <!--quick_option_dialog中itemLinearLayout样式-->
+    <style name="quick_option_item_layoutStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/space_16</item>
+    </style>
+    <!--quick_option_dialog中textview样式-->
+    <style name="quick_option_item_textStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_12</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@drawable/tab_text_selector</item>
+    </style>
+    <!--dialog动画-->
+    <style name="dialog_animation" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+
+</resources>

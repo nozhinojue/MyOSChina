@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="#e2e2e2"
+    android:orientation="vertical">
+
+    <com.example.cjj.myoschina.customview.CustomerScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_quest_drawer_main2A"
+                style="@style/MenuItemLayoutStyle">
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@mipmap/drawer_menu_icon_quest_nor" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="技术问答" />
+            </LinearLayout>
+
+            <View style="@style/h_lineStyle" />
+
+            <LinearLayout
+                android:id="@+id/ll_opensoft_drawer_main2A"
+                style="@style/MenuItemLayoutStyle">
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@mipmap/drawer_menu_icon_opensoft_nor" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="开源软件" />
+            </LinearLayout>
+
+            <View style="@style/h_lineStyle" />
+
+            <LinearLayout
+                android:id="@+id/ll_blog_drawer_main2A"
+                style="@style/MenuItemLayoutStyle">
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@mipmap/drawer_menu_icon_blog_nor" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="博 客 区" />
+            </LinearLayout>
+
+            <View style="@style/h_lineStyle" />
+
+            <LinearLayout
+                android:id="@+id/ll_gitapp_drawer_main2A"
+                style="@style/MenuItemLayoutStyle">
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@mipmap/drawer_menu_icon_gitapp_nor" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="Git客户端" />
+            </LinearLayout>
+
+            <View style="@style/h_lineStyle" />
+
+        </LinearLayout>
+    </com.example.cjj.myoschina.customview.CustomerScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_setting_main2A"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/list_item_bg"
+            android:gravity="center">
+
+            <ImageView
+                style="@style/MenuItemImageViewStyle"
+                android:background="@mipmap/drawer_menu_icon_setting_nor" />
+
+            <TextView
+                style="@style/MenuItemTextViewStyle"
+                android:text="设置"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+
+        <View style="@style/v_lineStyle"></View>
+
+        <LinearLayout
+            android:id="@+id/ll_pattern_main2A"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/list_item_bg"
+            android:gravity="center">
+
+            <ImageView
+                style="@style/MenuItemImageViewStyle"
+                android:background="@mipmap/drawer_menu_icon_night_nor" />
+
+            <TextView
+                style="@style/MenuItemTextViewStyle"
+                android:text="模式"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
