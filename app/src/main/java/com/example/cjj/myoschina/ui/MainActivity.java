@@ -15,10 +15,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.cjj.myoschina.R;
-import com.example.cjj.myoschina.fragment.ExploreFragment;
-import com.example.cjj.myoschina.fragment.MeFragment;
-import com.example.cjj.myoschina.fragment.NewFragment;
-import com.example.cjj.myoschina.fragment.TweetFragment;
+import com.example.cjj.myoschina.ui.fragment.ExploreFragment;
+import com.example.cjj.myoschina.ui.fragment.MeFragment;
+import com.example.cjj.myoschina.ui.fragment.NewFragment;
+import com.example.cjj.myoschina.ui.fragment.TweetFragment;
 import com.example.cjj.myoschina.ui.dialog.QuickOptionDialog;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
