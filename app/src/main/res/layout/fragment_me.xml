@@ -4,10 +4,129 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.MeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="我的" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/fragment_me_head"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_13">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@mipmap/icon_my_message" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消息"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="10"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+
+        <View style="@style/h_lineStyle"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_13">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@mipmap/icon_my_blog" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="博客"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="9"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+
+        <View style="@style/h_lineStyle"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_13">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@mipmap/icon_my_note" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="便签"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="8"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+
+        <View style="@style/h_lineStyle"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_13">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@mipmap/icon_my_team" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团队"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="5"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+
+        <View style="@style/h_lineStyle"></View>
+
+    </LinearLayout>
 
 </FrameLayout>

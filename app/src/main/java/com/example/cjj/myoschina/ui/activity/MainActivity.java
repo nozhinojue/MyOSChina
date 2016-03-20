@@ -1,4 +1,4 @@
-package com.example.cjj.myoschina.ui;
+package com.example.cjj.myoschina.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
