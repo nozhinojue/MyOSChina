@@ -1,6 +1,7 @@
 package com.example.cjj.myoschina.ui.activity;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.cjj.myoschina.R;
 
@@ -23,6 +25,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Context context;
     private LayoutInflater layoutInflater;
 
+    /*
+    * 两个属性
+    * 1、toolbar是否悬浮在窗口之上
+    * 2、toolbar的高度获取
+    * */
+    private static int[] ATTRS = {
+            R.attr.windowActionBarOverlay,
+            R.attr.actionBarSize
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +48,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(baseContentView);
 
         initView(baseContentView);
+
+        //把toolbar添加到界面中
+        setSupportActionBar(toolbar);
     }
 
 
@@ -53,26 +68,32 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void initToolBar(){
         View toolbarView= layoutInflater.inflate(R.layout.toolbar, baseContentView);
         toolbar= (Toolbar) toolbarView.findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
+
     }
 
     //初始化子类view
     private void initChildView() {
         View childView= layoutInflater.inflate(setLayoutId(),null);
-        baseContentView.addView(childView); //添加到父容器中
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(ATTRS);
+        /*获取主题中定义的悬浮标志*/
+        boolean overly = typedArray.getBoolean(0, false);
+        /*获取主题中定义的toolbar的高度*/
+        int toolBarSize = (int) typedArray.getDimension(1,(int) context.getResources().getDimension(R.dimen.abc_action_bar_default_height_material));
+        typedArray.recycle();
+        /*如果是悬浮状态，则不需要设置间距*/
+        params.topMargin = overly ? 0 : toolBarSize;
+        baseContentView.addView(childView,params); //添加到父容器中
     }
 
     public Toolbar getToolBar(){
         return toolbar;
     }
 
-//    /**
-//     * 设置toolbar标题
-//     * @param titleStr
-//     */
-//    public void setToolBarTitle(String titleStr){
-//        toolbar.setTitle(titleStr);
-//    }
+
+    public void showToast(String msg){
+        Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
