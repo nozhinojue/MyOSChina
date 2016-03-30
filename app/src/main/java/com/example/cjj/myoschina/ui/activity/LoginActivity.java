@@ -1,41 +1,29 @@
 package com.example.cjj.myoschina.ui.activity;
 
-import android.os.Handler;
-import android.os.Looper;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.cjj.api.ApiCallbackListener;
-import com.example.cjj.api.ApiImpl;
+import com.example.cjj.myoschina.AppConfig;
 import com.example.cjj.myoschina.R;
-import com.example.cjj.myoschina.util.MyCookieStore;
+import com.example.cjj.myoschina.api.ApiImpl;
+import com.example.cjj.myoschina.api.okhttp.OkHttpUtil;
+import com.example.cjj.myoschina.model.LoginUserBean;
+import com.example.cjj.myoschina.util.Contants;
+import com.example.cjj.myoschina.util.TDevice;
+import com.example.cjj.myoschina.util.XmlUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Cookie;
-import okhttp3.CookieJar;
-import okhttp3.FormBody;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText etUserName;
     private EditText etPwd;
+    private String uname;
+    private String pwd;
 
-    private Handler mainHanlder;
-
-    OkHttpClient client;
-
-    private MyCookieStore myCookieStore;
 
     @Override
     protected int setLayoutId() {
@@ -55,56 +43,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         etPwd= (EditText) view.findViewById(R.id.et_pwd_loginA);
         etPwd.setText("oschina1233308");
 
-        mainHanlder = new Handler(Looper.getMainLooper());
-
-        myCookieStore= new MyCookieStore(getApplicationContext());
-
-        client=new OkHttpClient.Builder()
-                .cookieJar(new CookieJar() {
-                    @Override
-                    public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
-                        HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
-                        cookieStore.put(url.host(),cookies);
-                        myCookieStore.saveCookie(cookieStore);//保存cookie到sp
-                    }
-
-                    @Override
-                    public List<Cookie> loadForRequest(HttpUrl url) {
-                        List<Cookie> cookies =myCookieStore.getCookie(url.host());
-                        return cookies != null ? cookies : new ArrayList<Cookie>();
-                    }
-                })
-                .build();
     }
 
 
-    private class MyCookieJar implements CookieJar{
 
-        @Override
-        public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
-            HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
-            cookieStore.put(url.host(),cookies);
-            myCookieStore.saveCookie(cookieStore);//保存cookie到sp
-        }
-
-        @Override
-        public List<Cookie> loadForRequest(HttpUrl url) {
-            List<Cookie> cookies =myCookieStore.getCookie(url.host());
-            return cookies != null ? cookies : new ArrayList<Cookie>();
-        }
-    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login_loginA:
-                String uname=etUserName.getText().toString();
-                String pwd=etPwd.getText().toString();
-                new ApiImpl().login(uname, pwd, mApicallback,new MyCookieJar());
-//                MyLogin(uname,pwd);
+                handleLogin();
                 break;
             case R.id.iv_qq_share_loginA:
-                 new ApiImpl().getFavoriteList("1765395", 1, 0, mApicallback,new MyCookieJar());
+                 ApiImpl.getFavoriteList("1765395", 1, 0, new OkHttpUtil.MyCallBack() {
+                     @Override
+                     public void onFailure(Call call, IOException e) {
+
+                     }
+
+                     @Override
+                     public void onResponse(String resultStr) {
+                         showToast(resultStr);
+                     }
+                 });
+//                 new ApiImpl().getFavoriteList("1765395", 1, 0, mApicallback);
 //                getFavoriteList("1765395",1,0);
                 break;
             case R.id.iv_wechat_share_loginA:
@@ -120,97 +82,55 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    private ApiCallbackListener mApicallback = new ApiCallbackListener() {
-        @Override
-        public void onSuccessed(String jsonResult) {
-            showToast(jsonResult);
+    private void handleLogin(){
+        if(!TDevice.hasInternet()) {
+            showToast("当前网络不可用！");
+            return;
         }
 
-        @Override
-        public void onFailure(String errorMsg) {
-            showToast(errorMsg);
+        if(etUserName.length()==0){    //判断用户名是否为空
+            etUserName.setError("请输入邮箱/用户名");
+            etUserName.requestFocus();
+            return;
         }
-    };
-
-
-    private void MyLogin(String username,String password){
-        String loginurl ="http://www.oschina.net/action/api/login_validate";
-
-        RequestBody formBody = new FormBody.Builder()
-                .add("username", username)
-                .add("pwd", password)
-                .add("keep_login", "1")
-                .build();
-
-        Request request = new Request.Builder()
-                .url(loginurl)
-                .post(formBody)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
+        if(etPwd.length()==0){    //判断密码是否为空
+            etPwd.setError("请输入密码");
+            etPwd.requestFocus();
+            return;
+        }
+         uname=etUserName.getText().toString();
+         pwd=etPwd.getText().toString();
+        ApiImpl.login(uname, pwd, new OkHttpUtil.MyCallBack() {
             @Override
             public void onFailure(Call call, IOException e) {
-                mainHanlder.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        showToast("请求失败。");
-                    }
-                });
 
             }
 
             @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                mainHanlder.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            showToast(response.body().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
+            public void onResponse(String resultStr) {
+                LoginUserBean loginUserBean = XmlUtils.toBean(LoginUserBean.class,resultStr.getBytes());
+                if (loginUserBean != null) {
+                    handleLoginBean(loginUserBean);
+                }
             }
         });
     }
 
+    private void  handleLoginBean(LoginUserBean loginUserBean){
+        if(loginUserBean.getResult().OK()){
+            // 保存登录信息
+            loginUserBean.getUser().setAccount(uname);
+            loginUserBean.getUser().setPwd(pwd);
+            loginUserBean.getUser().setRememberMe(true);
+            AppConfig.getInstance(context).saveUserInfo(loginUserBean.getUser());
 
-    private void getFavoriteList(String uid, int type, int page){
-        String FavoriteList ="http://www.oschina.net/action/api/favorite_list?"
-                +"uid="+uid+"&type="+type+"&pageIndex="+page+"&pageSize=20";
+            //发送登录成功广播
+            Intent intent = new Intent(Contants.INTENT_ACTION_USER_CHANGE);
+            this.sendBroadcast(intent);
 
-        Request request = new Request.Builder()
-                .url(FavoriteList)
-                .get()
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                mainHanlder.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        showToast("请求失败。");
-                    }
-                });
-
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                mainHanlder.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            showToast(response.body().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-            }
-        });
+            finish();
+        }else {
+            showToast(loginUserBean.getResult().getErrorMessage());
+        }
     }
 }

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.MeFragment">
 
-    <com.example.cjj.myoschina.customview.CustomerScrollView
+    <com.example.cjj.myoschina.ui.customview.CustomerScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -133,5 +133,5 @@
             <View style="@style/h_lineStyle"></View>
 
         </LinearLayout>
-    </com.example.cjj.myoschina.customview.CustomerScrollView>
+    </com.example.cjj.myoschina.ui.customview.CustomerScrollView>
 </FrameLayout>

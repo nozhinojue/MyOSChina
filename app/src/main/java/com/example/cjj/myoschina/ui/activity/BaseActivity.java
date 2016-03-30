@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private FrameLayout baseContentView; //父容器
     private Toolbar toolbar;
 
-    private Context context;
+    public Context context;
     private LayoutInflater layoutInflater;
 
     /*
