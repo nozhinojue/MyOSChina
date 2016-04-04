@@ -3,6 +3,7 @@ package com.example.cjj.myoschina;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.cjj.myoschina.api.okhttp.cookie.store.PersistentCookieStore;
 import com.example.cjj.myoschina.model.User;
 import com.example.cjj.myoschina.util.CyptoUtils;
 
@@ -101,6 +102,16 @@ public class AppConfig {
         editor.putString("user.gender", String.valueOf(user.getGender()));
         editor.putString("user.isRememberMe", String.valueOf(user.isRememberMe()));
         editor.commit();
+    }
+
+
+    //用户注销
+    public void logOut(){
+        this.loginUid=0;
+        this.loginFlag=false;
+        sharedPreferences.edit().clear().commit();
+        //清除cookie
+        new PersistentCookieStore(MyApplication.context).removeAll();
     }
 
     /**

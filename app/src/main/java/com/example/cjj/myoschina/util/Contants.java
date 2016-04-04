@@ -8,4 +8,6 @@ package com.example.cjj.myoschina.util;
 public class Contants {
 
     public static final String INTENT_ACTION_USER_CHANGE = "net.oschina.action.USER_CHANGE";
+
+    public static final String INTENT_ACTION_LOGOUT = "net.oschina.action.LOGOUT";
 }

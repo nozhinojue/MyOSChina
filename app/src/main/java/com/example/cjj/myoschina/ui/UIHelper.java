@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.cjj.myoschina.ui.activity.LoginActivity;
+import com.example.cjj.myoschina.ui.activity.MyInfoDetailActivity;
 
 /**
  * 界面帮助类
@@ -17,6 +18,11 @@ public class UIHelper {
      */
     public static void showLoginActivity(Context context){
         Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showInfoDetailActivity(Context context){
+        Intent intent = new Intent(context, MyInfoDetailActivity.class);
         context.startActivity(intent);
     }
 }
