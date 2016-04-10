@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.cjj.myoschina.api.okhttp.cookie.store.PersistentCookieStore;
+import com.example.cjj.myoschina.cache.Snappydb.MySnappyDBManager;
 import com.example.cjj.myoschina.model.User;
 import com.example.cjj.myoschina.util.CyptoUtils;
 
@@ -107,11 +108,16 @@ public class AppConfig {
 
     //用户注销
     public void logOut(){
+
+        //删除缓存
+        MySnappyDBManager.delete(MyApplication.context,"my_information"+this.loginUid);
+
         this.loginUid=0;
         this.loginFlag=false;
         sharedPreferences.edit().clear().commit();
         //清除cookie
         new PersistentCookieStore(MyApplication.context).removeAll();
+
     }
 
     /**

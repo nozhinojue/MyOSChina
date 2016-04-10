@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.cjj.myoschina.cache;
+package com.example.cjj.myoschina.cache.ASimpleCache;
 
 import android.content.Context;
 import android.graphics.Bitmap;

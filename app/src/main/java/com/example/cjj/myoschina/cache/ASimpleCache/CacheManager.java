@@ -1,4 +1,4 @@
-package com.example.cjj.myoschina.cache;
+package com.example.cjj.myoschina.cache.ASimpleCache;
 
 import android.content.Context;
 import android.os.AsyncTask;

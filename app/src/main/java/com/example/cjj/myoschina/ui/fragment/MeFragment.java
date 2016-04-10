@@ -20,7 +20,7 @@ import com.example.cjj.myoschina.AppConfig;
 import com.example.cjj.myoschina.R;
 import com.example.cjj.myoschina.api.ApiImpl;
 import com.example.cjj.myoschina.api.okhttp.OkHttpUtil;
-import com.example.cjj.myoschina.cache.CacheManager;
+import com.example.cjj.myoschina.cache.Snappydb.MySnappyDBManager;
 import com.example.cjj.myoschina.model.MyInformation;
 import com.example.cjj.myoschina.model.User;
 import com.example.cjj.myoschina.ui.UIHelper;
@@ -59,6 +59,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     break;
                 case Contants.INTENT_ACTION_LOGOUT:
                     isLoginFlag=false;
+
+                    //清空界面内容
                     clearUI();
                     break;
             }
@@ -87,12 +89,18 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        loadData();
+    }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        loadData();
+       // loadData();
     }
 
     private void initView(View view) {
@@ -112,12 +120,28 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private void loadData() {
         if(isLoginFlag){
             String key=getCacheKey();
-            Object cacheObj= CacheManager.get(getContext()).getObject(key);
-            if(cacheObj!=null){
-                //缓存存在，使用缓存
-                User user=(User)cacheObj;
+            //方法1
+//            Object cacheObj= CacheManager.get(getContext()).getObject(key);
+//            if(cacheObj!=null){
+//                //缓存存在，使用缓存
+//                User user=(User)cacheObj;
+//                fillUI(user);
+//                Log.i(TAG,"缓存加载");
+//            }else {
+//                //无缓存，请求网络加载数据。
+//                if(TDevice.hasInternet()){
+//                    requestData();
+//                    Log.i(TAG, "网络加载");
+//                }else {
+//                    Toast.makeText(getContext(), "网络不可用！", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+
+            //方法2
+            User user= MySnappyDBManager.get(getContext(), key, User.class);
+            if(user!=null){
                 fillUI(user);
-                Log.i(TAG,"缓存加载");
+                Log.i(TAG, "snappy缓存加载");
             }else {
                 //无缓存，请求网络加载数据。
                 if(TDevice.hasInternet()){
@@ -127,6 +151,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getContext(), "网络不可用！", Toast.LENGTH_SHORT).show();
                 }
             }
+
         }
     }
 
@@ -147,7 +172,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     fillUI(userInfo);
                     AppConfig.getInstance(getContext()).updateUserInfo(userInfo);
                     //缓存userInfo对象
-                    CacheManager.get(getContext()).saveObject(getCacheKey(),userInfo);
+                    //方法1
+                    //CacheManager.get(getContext()).saveObject(getCacheKey(),userInfo);
+                    //方法2
+                    MySnappyDBManager.put(getContext(),getCacheKey(),userInfo);
+                    Log.i(TAG, "snappy缓存了userinfo");
+
                 }
             }
         });

@@ -29,4 +29,7 @@ dependencies {
 //    compile project(':core')
 //    compile project(':api')
     compile 'com.squareup.okhttp3:okhttp:3.1.2'
+    //snappydb
+    compile 'com.snappydb:snappydb-lib:0.5.2'
+    compile 'com.esotericsoftware.kryo:kryo:2.24.0'
 }
