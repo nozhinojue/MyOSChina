@@ -60,7 +60,7 @@ public class MySnappyDBManager {
         try {
             snappydb = DBFactory.open(context);
             snappydb.del(key);
-            Log.i(TAG,"del："+key+"success");
+            Log.i(TAG,"snappydb删除缓存："+key+" success!");
         } catch (SnappydbException e) {
             e.printStackTrace();
         }finally {

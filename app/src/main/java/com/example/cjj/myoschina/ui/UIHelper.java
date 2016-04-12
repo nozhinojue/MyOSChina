@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.example.cjj.myoschina.ui.activity.LoginActivity;
 import com.example.cjj.myoschina.ui.activity.MyInfoDetailActivity;
+import com.example.cjj.myoschina.zxing.activity.CaptureActivity;
 
 /**
  * 界面帮助类
@@ -21,8 +22,22 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
+    /**
+     * 显示用户详细信息页面
+     * @param context
+     */
     public static void showInfoDetailActivity(Context context){
         Intent intent = new Intent(context, MyInfoDetailActivity.class);
         context.startActivity(intent);
     }
+
+    /**
+     * 显示扫码界面
+     * @param context
+     */
+    public static void showScanActivity(Context context){
+        Intent intent = new Intent(context, CaptureActivity.class);
+        context.startActivity(intent);
+    }
+
 }

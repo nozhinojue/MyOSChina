@@ -32,4 +32,7 @@ dependencies {
     //snappydb
     compile 'com.snappydb:snappydb-lib:0.5.2'
     compile 'com.esotericsoftware.kryo:kryo:2.24.0'
+
+    //zxing二维码
+    compile 'com.google.zxing:core:3.2.0'
 }
