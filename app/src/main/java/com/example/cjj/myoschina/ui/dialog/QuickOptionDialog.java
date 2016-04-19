@@ -88,6 +88,7 @@ public class QuickOptionDialog extends Dialog implements android.view.View.OnCli
                 break;
             case R.id.ll_photo_quick_option:
                 //拍照
+                UIHelper.showTweetActivity(getContext());
                 break;
         }
 

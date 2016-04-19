@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.example.cjj.myoschina.ui.activity.LoginActivity;
 import com.example.cjj.myoschina.ui.activity.MyInfoDetailActivity;
+import com.example.cjj.myoschina.ui.activity.TweetActivity;
 import com.example.cjj.myoschina.zxing.activity.CaptureActivity;
 
 /**
@@ -37,6 +38,16 @@ public class UIHelper {
      */
     public static void showScanActivity(Context context){
         Intent intent = new Intent(context, CaptureActivity.class);
+        context.startActivity(intent);
+    }
+
+
+    /**
+     * 显示动弹activity
+     * @param context
+     */
+    public  static void showTweetActivity(Context context){
+        Intent intent = new Intent(context, TweetActivity.class);
         context.startActivity(intent);
     }
 
