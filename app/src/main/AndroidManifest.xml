@@ -32,7 +32,10 @@
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.MyInfoDetailActivity" />
         <activity android:name=".zxing.activity.CaptureActivity" />
-        <activity android:name=".ui.activity.TweetActivity"></activity>
+        <activity
+            android:name=".ui.activity.TweetActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">  <!-- 软键盘自动调节,不覆盖视图 -->
+        </activity>
     </application>
 
 </manifest>

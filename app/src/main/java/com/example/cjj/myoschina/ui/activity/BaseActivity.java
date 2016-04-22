@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView(baseContentView);
 
         //把toolbar添加到界面中
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
     }
 
 
@@ -68,7 +68,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void initToolBar(){
         View toolbarView= layoutInflater.inflate(R.layout.toolbar, baseContentView);
         toolbar= (Toolbar) toolbarView.findViewById(R.id.toolbar2);
-
+        //导航返回图标的点击事件
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     //初始化子类view
@@ -90,21 +96,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         return toolbar;
     }
 
+    public void setToolbarTitle(String title){
+        toolbar.setTitle(title);
+    }
 
     public void showToast(String msg){
         Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                //toolbar上的返回按钮事件
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * 设置LayoutId

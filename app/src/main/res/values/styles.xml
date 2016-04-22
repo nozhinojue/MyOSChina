@@ -1,6 +1,6 @@
 <resources>
     <!-- app主题 -->
-    <style name="MyAppTheme" parent="Base.Theme.AppCompat.Light">
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
@@ -16,6 +16,11 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- toolbar 弹出menu样式-->
+    <style name="MyCustomPopupTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">#ed08</item>
+        <item name="overlapAnchor">false</item>
+    </style>
 
     <!--drawer中菜单layout样式-->
     <style name="MenuItemLayoutStyle">

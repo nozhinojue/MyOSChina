@@ -1,6 +1,7 @@
 package com.example.cjj.myoschina.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
@@ -24,6 +25,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String uname;
     private String pwd;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //设置标题
+        setToolbarTitle("登录界面");
+    }
 
     @Override
     protected int setLayoutId() {
@@ -32,7 +39,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void initView(View view) {
-        getToolBar().setTitle("登录界面");
         view.findViewById(R.id.iv_qq_share_loginA).setOnClickListener(this);
         view.findViewById(R.id.iv_wechat_share_loginA).setOnClickListener(this);
         view.findViewById(R.id.iv_sinawweibo_share_loginA).setOnClickListener(this);
@@ -44,9 +50,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         etPwd.setText("oschina1233308");
 
     }
-
-
-
 
     @Override
     public void onClick(View view) {

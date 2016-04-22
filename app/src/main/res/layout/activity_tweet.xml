@@ -1,19 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cjj.myoschina.ui.activity.TweetActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="动弹activity"
+    <EditText
+        android:id="@+id/et_content_tweetA"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:hint="今天你动弹了吗？"
+        android:gravity="top|left"
+        android:padding="@dimen/space_12"
+        android:textSize="@dimen/text_size_18"
         />
-    <ImageView
-        android:id="@+id/iv_TweetA"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_bottom_tweetA"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:gravity="bottom"
+        android:padding="8dp">
+        <RelativeLayout
+            android:id="@+id/rl_iv_tweetA"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            >
+            <ImageView
+                android:id="@+id/iv_img_tweetA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="centerCrop"
+                />
+            <ImageView
+                android:id="@+id/iv_clearImg_tweetA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ib_clear_image_selector"
+                android:clickable="true"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_count_clear_tweetA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/rl_iv_tweetA"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/compose_clear_selector"
+            android:text="120"
+            android:textSize="@dimen/text_size_14"
+            android:gravity="center"
+            android:clickable="true"/>
+    </RelativeLayout>
+
+    <View style="@style/h_lineStyle"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/compose_toolbar_picture_selector"
+            android:padding="8dp"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/compose_toolbar_mention_selector"
+            android:padding="8dp"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/compose_toolbar_trend_selector"
+            android:padding="8dp"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/compose_toolbar_emoji_selector"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+    <View style="@style/h_lineStyle"></View>
+
+    <FrameLayout
+        android:id="@+id/fl_emoji_keyboard_tweetA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 </LinearLayout>

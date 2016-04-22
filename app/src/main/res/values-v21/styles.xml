@@ -1,9 +1,8 @@
-<resources>>
+<resources>
 
-    <!--<style name="AppTheme.NoActionBar">-->
-        <!--<item name="windowActionBar">false</item>-->
-        <!--<item name="windowNoTitle">true</item>-->
-        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
-        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+    <!--<style name="MyCustomPopupTheme" parent="ThemeOverlay.AppCompat.Light">-->
+        <!--&lt;!&ndash; Api 21&ndash;&gt;-->
+        <!--<item name="android:overlapAnchor">false</item>-->
     <!--</style>-->
+
 </resources>

@@ -2,6 +2,7 @@ package com.example.cjj.myoschina.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.example.cjj.myoschina.ui.activity.LoginActivity;
 import com.example.cjj.myoschina.ui.activity.MyInfoDetailActivity;
@@ -46,8 +47,9 @@ public class UIHelper {
      * 显示动弹activity
      * @param context
      */
-    public  static void showTweetActivity(Context context){
+    public  static void showTweetActivity(Context context, Bundle bundle){
         Intent intent = new Intent(context, TweetActivity.class);
+        intent.putExtra(TweetActivity.BUNDLE_KEY_ARGS,bundle);
         context.startActivity(intent);
     }
 

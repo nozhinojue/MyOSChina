@@ -11,6 +11,7 @@ import android.view.WindowManager;
 
 import com.example.cjj.myoschina.R;
 import com.example.cjj.myoschina.ui.UIHelper;
+import com.example.cjj.myoschina.ui.activity.TweetActivity;
 
 /**
  * Created by CJJ on 2016/3/18.
@@ -75,6 +76,11 @@ public class QuickOptionDialog extends Dialog implements android.view.View.OnCli
                 break;
             case R.id.ll_album_quick_option:
                 //相册
+                showTweet(R.id.ll_album_quick_option);
+                break;
+            case R.id.ll_photo_quick_option:
+                //拍照
+                showTweet(R.id.ll_photo_quick_option);
                 break;
             case R.id.ll_note_quick_option:
                 //便签
@@ -86,13 +92,26 @@ public class QuickOptionDialog extends Dialog implements android.view.View.OnCli
             case R.id.ll_voice_quick_option:
                 //语音
                 break;
-            case R.id.ll_photo_quick_option:
-                //拍照
-                UIHelper.showTweetActivity(getContext());
-                break;
+
         }
 
         dismiss();
+    }
+
+
+    private void showTweet(int id) {
+        Bundle bundle =new Bundle();
+        int type=-1;
+        switch (id){
+            case R.id.ll_album_quick_option:
+                type= TweetActivity.ACTION_TYPE_ALBUM;
+                break;
+            case R.id.ll_photo_quick_option:
+                type= TweetActivity.ACTION_TYPE_PHOTO;
+                break;
+        }
+        bundle.putInt(TweetActivity.ACTION_TYPE,type);
+        UIHelper.showTweetActivity(getContext(),bundle);
     }
 
 
